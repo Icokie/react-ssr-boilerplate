@@ -1,0 +1,94 @@
+const path = require('path');
+const express = require('express');
+const config = require('../../config/dev');
+
+const server = express();
+
+// ==========================================================/
+// babelify
+// ==========================================================/
+
+require('babel-register')({
+    presets: config.babelPresets
+});
+
+const reactApp = require('../app/ssr/index');
+
+// ==========================| babelify |====================/
+
+// ==========================================================/
+// server configuration
+// ==========================================================/
+
+server.set('view engine', 'pug');
+server.set('views', path.resolve(__dirname));
+
+// ==============| server configuration |====================/
+
+const headers = {
+    'x-timestamp': Date.now(),
+    'x-sent': true
+};
+
+// ==========================================================/
+// routing
+// ==========================================================/
+
+// disable favicon
+server.get('/favicon.ico', (req, res) => {
+
+    res.sendStatus(204);
+
+});
+
+const options = {
+    root: path.resolve(__dirname, '../../build/static'),
+    dotfiles: 'deny',
+    headers
+};
+
+// serve static files
+server.get('/static/:name', (req, res) => {
+
+    res.sendFile(req.params.name, options, err => {
+
+        if (err) {
+
+            console.log(err);
+
+        }
+
+    });
+
+});
+
+// serve react view
+server.get('*', (req, res) => {
+
+    const data = {};
+
+    if (req.get('X-Requested-With') === 'XMLHttpRequest') {
+
+        res.json({});
+
+    } else {
+
+        reactApp.renderComponent(data).then(component => {
+
+            res.render('index', {data, meta: data.meta, content: component});
+
+        });
+
+    }
+
+});
+
+// =====================| routing |==========================/
+
+// ==========================================================/
+// run
+// ==========================================================/
+
+server.listen(config.backendPort, console.log(`backend at : ${config.backendPort}`));
+
+// ========================| run |===========================/
