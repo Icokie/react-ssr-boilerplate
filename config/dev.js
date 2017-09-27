@@ -1,14 +1,14 @@
 module.exports = {
-    
-    backendPort: 3030,
-    
+
+    backendPort: 8080,
+
     apiProxy: {
-        host: '',
+        host: ''
     },
-    
+
     cache: {
         back: {cache: true, expires: 30000},
         front: {cache: true, expires: 30000}
     }
-    
+
 };
