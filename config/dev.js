@@ -1,6 +1,6 @@
 module.exports = {
 
-    backendPort: 8080,
+    backendPort: 4000,
 
     apiProxy: {
         host: ''
@@ -9,6 +9,8 @@ module.exports = {
     cache: {
         back: {cache: true, expires: 30000},
         front: {cache: true, expires: 30000}
-    }
+    },
+
+    babelPresets: ['es2015', 'react']
 
 };

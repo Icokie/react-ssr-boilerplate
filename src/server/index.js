@@ -65,19 +65,21 @@ server.get('/static/:name', (req, res) => {
 // serve react view
 server.get('*', (req, res) => {
 
-    const data = {};
-
     if (req.get('X-Requested-With') === 'XMLHttpRequest') {
 
         res.json({});
 
     } else {
 
-        reactApp.renderComponent(data).then(component => {
+        const template = `<html>
+        <head>
+        </head>
+        <body>
+        <div id="app">${reactApp.default}</div>
+        </body>
+        </html>`;
 
-            res.render('index', {data, meta: data.meta, content: component});
-
-        });
+        res.send(template);
 
     }
 
