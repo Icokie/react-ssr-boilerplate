@@ -42,7 +42,7 @@ server.get('/favicon.ico', (req, res) => {
 });
 
 const options = {
-    root: path.resolve(__dirname, '../../build/static'),
+    root: path.resolve(__dirname, '../../build'),
     dotfiles: 'deny',
     headers
 };
