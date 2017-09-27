@@ -1,4 +1,5 @@
-import {render} from 'react-dom';
+import React from 'react';
+import {hydrate} from 'react-dom';
 import App from './components/App';
 
-render(App, document.getElementById('app'));
+hydrate(<App/>, document.getElementById('app'));
