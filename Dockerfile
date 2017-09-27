@@ -4,15 +4,15 @@ FROM alpine:3.6
 RUN apk add --update nodejs
 
 #creating app dirrectory
-RUN mkdir /usr/src/app 
-WORKDIR /usr/src/app
+RUN mkdir /app 
+WORKDIR /app
 
 #installing dependencies
-COPY package.json /usr/src/app 
+COPY package.json /app 
 RUN npm install
 
 #bundle app source
-COPY . /usr/src/app
+COPY . /app
 
 EXPOSE 8080
 CMD [ "npm", "start" ]
