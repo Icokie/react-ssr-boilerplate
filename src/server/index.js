@@ -71,7 +71,7 @@ server.get('*', (req, res) => {
 
     } else {
 
-        res.render('index', {meta: {title: 'app', content: reactApp.default}});
+        res.render('index', {meta: {title: 'app'}, content: reactApp.default});
 
     }
 
