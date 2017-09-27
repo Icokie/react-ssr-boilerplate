@@ -48,7 +48,7 @@ const options = {
 };
 
 // serve static files
-server.get('/static/:name', (req, res, next) => {
+server.get('/assets/:name', (req, res, next) => {
 
     res.sendFile(req.params.name, options, err => {
 
