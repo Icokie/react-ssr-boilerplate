@@ -21,7 +21,7 @@ const reactApp = require('../app/ssr/index');
 // ==========================================================/
 
 server.set('view engine', 'pug');
-server.set('views', path.resolve(__dirname));
+server.set('views', path.resolve(__dirname, './views'));
 
 // ==============| server configuration |====================/
 
@@ -48,13 +48,13 @@ const options = {
 };
 
 // serve static files
-server.get('/static/:name', (req, res) => {
+server.get('/static/:name', (req, res, next) => {
 
     res.sendFile(req.params.name, options, err => {
 
         if (err) {
 
-            console.log(err);
+            next(err);
 
         }
 
@@ -71,15 +71,7 @@ server.get('*', (req, res) => {
 
     } else {
 
-        const template = `<html>
-        <head>
-        </head>
-        <body>
-        <div id="app">${reactApp.default}</div>
-        </body>
-        </html>`;
-
-        res.send(template);
+        res.render('index', {meta: {title: 'app', content: reactApp.default}});
 
     }
 
