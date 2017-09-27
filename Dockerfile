@@ -1,4 +1,7 @@
-FROM node:argon
+FROM alpine:3.6
+
+#update
+RUN apk add --update nodejs
 
 #creating app dirrectory
 RUN mkdir /usr/src/app 
