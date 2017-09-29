@@ -22,7 +22,7 @@ module.exports = {
                 {
                     loader: 'css-loader',
                     options: {
-                        minimize: false
+                        minimize: config.environment !== 'dev'
                     }
                 },
                 {
@@ -40,7 +40,7 @@ module.exports = {
                 {
                     loader: 'css-loader',
                     options: {
-                        minimize: false
+                        minimize: config.environment !== 'dev'
                     }
                 }, 'less-loader'])
         },

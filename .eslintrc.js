@@ -34,6 +34,7 @@ module.exports = {
         ],
         "padded-blocks": ["error", "always"],
         "no-trailing-spaces":["warn"],
-        "no-console":["off"]
+        "no-console":["off"],
+        "import/no-extraneous-dependencies": ["off"]
     }
 };
