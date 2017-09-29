@@ -1,6 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const config = require('../config/dev');
+const config = require('../config/common');
 
 module.exports = {
     rules: [

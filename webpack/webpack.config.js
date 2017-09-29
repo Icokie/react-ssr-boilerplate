@@ -5,6 +5,7 @@ const loaders = require('./webpack.loaders');
 const plugins = require('./webpack.plugins');
 
 const rootDir = path.resolve(__dirname, '../');
+const config = require('../config/common');
 
 module.exports = {
     context: path.resolve(rootDir, 'src/app/client'),
@@ -22,9 +23,9 @@ module.exports = {
         chunkFilename: '[name].js?[hash:4]'
     },
 
-    devtool: '#cheap-module-eval-source-map',
+    devtool: config.environment === 'dev' ? '#cheap-module-eval-source-map' : false,
 
-    cache: true,
+    cache: config.environment === 'dev',
 
     module: loaders,
     plugins

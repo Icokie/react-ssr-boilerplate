@@ -9,8 +9,5 @@ module.exports = [
     }),
     new ExtractTextPlugin('[name].css'),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.DefinePlugin({
-        PRODUCTION: false
-    })
+    new webpack.optimize.OccurrenceOrderPlugin()
 ];

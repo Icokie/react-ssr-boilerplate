@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server/index.js",
-    "dev": "webpack -w --config ./webpack/webpack.config.js"
+    "dev": "NODE_ENV=dev webpack -w --config ./webpack/webpack.config.js"
   },
   "keywords": [],
   "author": "",
